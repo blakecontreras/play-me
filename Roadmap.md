@@ -8,11 +8,11 @@ An app for digital discovery
 * State manager: Vuex
 
 #### Views
-* Splash Page / Welcome Page
-* Demo Version
 * User Dashboard
 * Rating Queue
 * Recommendation Queue
+* Demo Version
+* Splash Page / Welcome Page
 
 ### Server
 * Giant Bomb API
