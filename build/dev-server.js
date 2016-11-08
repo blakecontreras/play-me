@@ -10,6 +10,16 @@ var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
 
+/*
+  My imports
+*/
+
+var router = require('../server/router')
+
+/*
+  End of my imports
+*/
+
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // Define HTTP proxies to your custom API backend
@@ -45,6 +55,9 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(context, options))
 })
 
+// my middleware
+app.use('/', router)
+
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
@@ -55,9 +68,11 @@ app.use(devMiddleware)
 // compilation error display
 app.use(hotMiddleware)
 
+
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
+
 
 module.exports = app.listen(port, function (err) {
   if (err) {
@@ -66,5 +81,5 @@ module.exports = app.listen(port, function (err) {
   }
   var uri = 'http://localhost:' + port
   console.log('Listening at ' + uri + '\n')
-  opn(uri)
+  opn(uri, {app: 'google chrome'})
 })
