@@ -32,7 +32,7 @@ module.exports = {
       query: query
     })
 
-    axios.get(apiQuery).then((response) => console.log(response))
+    return axios.get(apiQuery)
   },
   /* params: object with properties:
       title: title of game,
@@ -42,5 +42,5 @@ module.exports = {
 
   }
 }
-
-module.exports.searchGiantBomb({format: 'json', query: '"metroid prime"', resources: 'game'});
+// example
+// module.exports.searchGiantBomb({query: '"metroid prime"', resources: 'game'})
