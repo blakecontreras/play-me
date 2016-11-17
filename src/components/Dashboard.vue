@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -13,9 +15,15 @@ export default {
     };
   },
   computed: {},
-  ready() {},
+  created() {
+    this.searchGame("Gex")
+  },
   attached() {},
-  methods: {},
+  methods: {
+    searchGame(name) {
+      axios.get('/api/giantbomb/search/' + name).then((response) => console.log(response))
+    }
+  },
   components: {},
 };
 </script>
