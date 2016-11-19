@@ -4,10 +4,10 @@ module.exports = {
   parserOptions: {
     sourceType: 'module'
   },
-  extends: 'airbnb-base',
+  extends: 'standard',
   // required to lint *.vue files
   plugins: [
-    'html'
+    'html', 'import'
   ],
   // check if imports actually resolve
   'settings': {
