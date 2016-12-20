@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   data() {
     return {
-      recommendations: ['game1', 'game2'],
-    };
+      recommendations: ['game1', 'game2']
+    }
   },
   computed: {},
   created() {
-    this.searchGame("Gex")
+    this.searchGame('Gex')
   },
   attached() {},
   methods: {
@@ -24,8 +24,8 @@ export default {
       axios.get('/api/giantbomb/search/' + name).then((response) => console.log(response))
     }
   },
-  components: {},
-};
+  components: {}
+}
 </script>
 
 <style lang="css">

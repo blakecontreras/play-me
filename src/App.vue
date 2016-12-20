@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div id="app">
     <img src="./assets/logo.png">
     <dashboard></dashboard>
@@ -6,14 +6,14 @@
 </template>
 
 <script>
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard'
 
 export default {
   name: 'app',
   components: {
-    Dashboard,
-  },
-};
+    Dashboard
+  }
+}
 </script>
 
 <style>
