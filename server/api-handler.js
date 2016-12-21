@@ -32,6 +32,8 @@ module.exports = {
       query: query
     })
 
+    console.log('making api query', apiQuery)
+
     return axios.get(apiQuery)
   },
   /* params: object with properties:
