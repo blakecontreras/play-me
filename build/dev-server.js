@@ -56,7 +56,7 @@ Object.keys(proxyTable).forEach(function (context) {
 })
 
 // my middleware
-app.use('/', router)
+app.use('/api', router)
 
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
