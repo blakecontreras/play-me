@@ -1,16 +1,15 @@
 import Vue from 'vue'
 import Dashboard from 'src/components/Dashboard'
-import sinon from 'sinon'
 import axios from 'axios'
 
 describe('Dashboard.vue', () => {
+  let sandbox
   beforeEach(function() {
-    this.get = sinon.stub(axios, 'get', () => {
-      return Promise.resolve('true')
-    })
+    sandbox = sinon.sandbox.create()
+    sandbox.stub(axios, 'get').returns(Promise.resolve('hi'))
   })
   afterEach(() => {
-    axios.get.restore()
+    sandbox.restore()
   })
   it('should render at least one game element', () => {
     const vm = new Vue({

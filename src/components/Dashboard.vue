@@ -1,7 +1,9 @@
 <template lang="html">
   <div>
     <div v-for="recommendation in recommendations">
-      {{ recommendation }}
+      <div class="game">
+        {{ recommendation }}
+      </div>
   </div>
 </template>
 
