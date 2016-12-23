@@ -1,5 +1,9 @@
 <template lang="html">
   <div>
+    <div class="current-game">
+      <img v-bind:src="currentGameImage">
+      {{ currentGameImage }}
+    </div>
     <div v-for="recommendation in recommendations">
       <div class="game">
         {{ recommendation }}
@@ -13,17 +17,39 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      recommendations: ['game1', 'game2']
+      recommendations: ['game1', 'game2'],
+      user: {username: 'test', favorite: 'Gex'},
+      currentGame: {title: '', image: 'wat', detail: ''}
     }
   },
-  computed: {},
+  computed: {
+    currentGameImage() {
+      return this.currentGame.image
+    }
+  },
   created() {
     this.searchGame('Gex')
+    this.getFavoriteGame()
   },
   attached() {},
   methods: {
     searchGame(name) {
-      axios.get('/api/giantbomb/search/' + name).then((response) => console.log(response))
+      return axios.get('/api/giantbomb/search/' + name).then((response) => {
+        console.log(response)
+        return response.data.results[0]
+      })
+    },
+    getFavoriteGame() {
+      if (this.user.favorite) {
+        return Promise.resolve(this.searchGame(this.user.favorite))
+          .then((results) => {
+            console.log(results)
+            this.currentGame = {title: results.name, image: results.image.medium_url, detail: results.site_detail_url}
+            return this.currentGame
+          })
+      } else {
+        return {title: '', image: 'wat', detail: ''}
+      }
     }
   },
   components: {}
