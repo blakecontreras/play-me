@@ -1,8 +1,7 @@
 <template lang="html">
   <div>
     <div class="current-game">
-      <img v-bind:src="currentGameImage">
-      {{ currentGameImage }}
+      <img v-bind:src="currentGame.image">
     </div>
     <div v-for="recommendation in recommendations">
       <div class="game">
@@ -23,12 +22,8 @@ export default {
     }
   },
   computed: {
-    currentGameImage() {
-      return this.currentGame.image
-    }
   },
   created() {
-    this.searchGame('Gex')
     this.getFavoriteGame()
   },
   attached() {},
