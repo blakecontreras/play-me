@@ -18,7 +18,7 @@ export default {
     return {
       recommendations: ['game1', 'game2'],
       user: {username: 'test', favorite: 'Gex'},
-      currentGame: {title: '', image: 'wat', detail: ''}
+      currentGame: {title: '', image: '../../static/wizard_cat.jpg', detail: ''}
     }
   },
   computed: {
@@ -32,7 +32,7 @@ export default {
       return axios.get('/api/giantbomb/search/' + name).then((response) => {
         console.log(response)
         return response.data.results[0]
-      })
+      }).catch((err) => console.log(err))
     },
     getFavoriteGame() {
       if (this.user.favorite) {
@@ -42,8 +42,9 @@ export default {
             this.currentGame = {title: results.name, image: results.image.medium_url, detail: results.site_detail_url}
             return this.currentGame
           })
+          .catch((err) => console.log(err))
       } else {
-        return {title: '', image: 'wat', detail: ''}
+        return {title: '', image: '../../static/wizard_cat.jpg', detail: ''}
       }
     }
   },
