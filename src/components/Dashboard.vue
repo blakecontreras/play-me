@@ -1,8 +1,6 @@
 <template lang="html">
   <div>
-    <div class="current-game">
-      <img v-bind:src="currentGame.image">
-    </div>
+    <current-game :current-game="currentGame"></current-game>
     <div class="search">
       <input>
     </div>
@@ -26,6 +24,7 @@
 
 <script>
 import axios from 'axios'
+import currentGame from './CurrentGame'
 
 export default {
   data() {
@@ -64,7 +63,9 @@ export default {
       }
     }
   },
-  components: {}
+  components: {
+    'current-game': currentGame
+  }
 }
 </script>
 
