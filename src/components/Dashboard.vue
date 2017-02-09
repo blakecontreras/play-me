@@ -3,10 +3,24 @@
     <div class="current-game">
       <img v-bind:src="currentGame.image">
     </div>
-    <div v-for="recommendation in recommendations">
+    <div class="search">
+      <input>
+    </div>
+    <div class="suggestion">
+      <div class="game">
+        <img :src="suggestion.image">
+      </div>
+    </div>
+    <div class="recommendation queue" v-for="recommendation in recommendations">
       <div class="game">
         {{ recommendation }}
       </div>
+    </div>
+    <div class="rating queue" v-for="title in library">
+      <div class="game">
+        {{ title }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,9 +30,11 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      recommendations: ['game1', 'game2'],
+      recommendations: ['rec1', 'rec2'],
       user: {username: 'test', favorite: 'Gex'},
-      currentGame: {title: '', image: '../../static/wizard_cat.jpg', detail: ''}
+      currentGame: {title: '', image: '../../static/wizard_cat.jpg', detail: ''},
+      suggestion: {title: '', image: '../../static/wizard_cat.jpg', detail: ''},
+      library: ['owned1', 'owned2']
     }
   },
   computed: {
