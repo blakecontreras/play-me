@@ -5,6 +5,10 @@
 </template>
 
 <script>
+/*
+  Props: Currently selected game from parent component.
+  Displays selected game.
+*/
   export default {
     props: ['currentGame']
   }
