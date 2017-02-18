@@ -1,9 +1,7 @@
 <template lang="html">
   <div>
     <current-game :current-game="currentGame"></current-game>
-    <div class="search">
-      <input>
-    </div>
+    <search :search-result="searchResult"></search>
     <div class="suggestion">
       <div class="game">
         <img :src="suggestion.image">
@@ -25,6 +23,7 @@
 <script>
 import axios from 'axios'
 import currentGame from './CurrentGame'
+import search from './Search'
 
 export default {
   data() {
@@ -33,7 +32,8 @@ export default {
       user: {username: 'test', favorite: 'Gex'},
       currentGame: {title: '', image: '../../static/wizard_cat.jpg', detail: ''},
       suggestion: {title: '', image: '../../static/wizard_cat.jpg', detail: ''},
-      library: ['owned1', 'owned2']
+      library: ['owned1', 'owned2'],
+      searchResult: {title: '', image: '../../static/wizard_cat.jpg', detail: ''}
     }
   },
   computed: {
@@ -64,7 +64,8 @@ export default {
     }
   },
   components: {
-    'current-game': currentGame
+    'current-game': currentGame,
+    'search': search
   }
 }
 </script>
