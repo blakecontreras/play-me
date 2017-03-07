@@ -1,7 +1,9 @@
 <template lang="html">
   <div id="app">
-    <img src="./assets/logo.png">
     <dashboard></dashboard>
+    <footer style="text-align: center;">
+      Source on <a href="https://github.com/blakecontreras/play-me">Github</a>. Built with Vue.<img src="./assets/logo.png" height="20px" width="20px">
+    </footer>
   </div>
 </template>
 
