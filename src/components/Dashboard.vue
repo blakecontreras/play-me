@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
+    <search v-on:submit="searchForGame"></search>
     <current-game :current-game="currentGame"></current-game>
-    <search :search-result="searchResult"></search>
     <div class="suggestion">
       <div class="game">
         <img :src="suggestion.image">
@@ -43,7 +43,8 @@ export default {
   },
   attached() {},
   methods: {
-    searchGame(name) {
+    _searchGiantBomb(name) {
+      console.log('searching for game: ', name)
       return axios.get('/api/giantbomb/search/' + name).then((response) => {
         console.log(response)
         return response.data.results[0]
@@ -51,16 +52,25 @@ export default {
     },
     getFavoriteGame() {
       if (this.user.favorite) {
-        return Promise.resolve(this.searchGame(this.user.favorite))
+        return Promise.resolve(this._searchGiantBomb(this.user.favorite))
           .then((results) => {
-            console.log(results)
-            this.currentGame = {title: results.name, image: results.image.medium_url, detail: results.site_detail_url}
-            return this.currentGame
+            this.setCurrentGame(results)
           })
           .catch((err) => console.log(err))
       } else {
         return {title: '', image: '../../static/wizard_cat.jpg', detail: ''}
       }
+    },
+    setCurrentGame(results) {
+      this.currentGame = {title: results.name, image: results.image.medium_url, detail: results.site_detail_url}
+      return this.currentGame
+    },
+    searchForGame(name) {
+      return this._searchGiantBomb(name)
+        .then((results) => {
+          this.setCurrentGame(results)
+        })
+        .catch((err) => console.log(err))
     }
   },
   components: {
